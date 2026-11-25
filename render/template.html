@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Tuesday 24 November 2026: the world's news</title>
+<style>
+  :root {
+    --paper: #f6f2e9; --ink: #161616; --mute: #555; --rule: #1a1a1a;
+    --red: #b3261e; --navy: #13294b;
+    --am: #1f5f9e; --eu: #5b3f8f; --me: #b3261e; --as: #c06a00; --af: #23804a; --sci: #0c7489; --biz: #6b4f1d; --sport: #8a3b8f;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { width: 1024px; height: 1024px; overflow: hidden; background: var(--paper); }
+  body { color: var(--ink); font-family: 'Inter', sans-serif; font-variant-numeric: lining-nums; padding: 12px 16px 0 16px; }
+  .cond { font-family: 'Barlow Condensed', sans-serif; }
+  .serif { font-family: 'Source Serif Pro', serif; }
+
+  /* masthead */
+  .mast { display: flex; align-items: flex-end; justify-content: space-between; height: 84px; border-bottom: 4px double var(--rule); padding-bottom: 6px; }
+  .kicker { font: 700 15px 'Barlow Condensed'; letter-spacing: 3px; color: var(--red); text-transform: uppercase; }
+  .date { font-family: 'Playfair Display', serif; font-weight: 900; font-size: 57px; line-height: 1; white-space: nowrap; letter-spacing: -0.5px; font-variant-numeric: lining-nums; }
+  .mastnote { width: 210px; text-align: right; font: 600 13px/1.25 'Barlow Condensed'; color: #333; text-transform: uppercase; letter-spacing: 0.4px; padding-bottom: 4px; }
+  .mastnote b { color: var(--red); display: block; font-size: 17px; letter-spacing: 0.5px; }
+
+  .strap { margin-top: 7px; height: 32px; background: var(--ink); color: #fff; display: flex; align-items: center; padding: 0 10px; gap: 10px;
+           font: 700 19px 'Barlow Condensed'; letter-spacing: 0.2px; white-space: nowrap; }
+  .strap .lab { background: var(--red); padding: 1px 7px; font-weight: 800; letter-spacing: 1px; }
+  .strap i { font-style: normal; color: #f2b8b3; }
+
+  /* heroes */
+  .heroes { margin-top: 10px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; height: 306px; }
+  .hero { position: relative; }
+  .hero svg.art { display: block; width: 100%; height: 146px; border-radius: 2px; }
+  .tag { font: 700 12.5px 'Barlow Condensed'; text-transform: uppercase; letter-spacing: 1.2px; margin-top: 7px; display: flex; align-items: center; gap: 6px; }
+  .num { display: inline-block; min-width: 17px; height: 17px; border-radius: 9px; background: var(--ink); color: #fff; text-align: center; font: 700 12px/17px 'Barlow Condensed'; letter-spacing: 0; padding: 0 4px; }
+  .hero .num { background: var(--red); }
+  .hero h2 { font-family: 'Source Serif Pro', serif; font-weight: 900; font-size: 23.5px; line-height: 1.08; margin-top: 3px; letter-spacing: -0.2px; }
+  .hero p { font-size: 12.6px; line-height: 1.36; margin-top: 5px; color: #222; }
+
+  /* secondary grid */
+  .grid { margin-top: 12px; display: grid; grid-template-columns: repeat(4, 1fr); grid-template-rows: repeat(2, 1fr); gap: 10px 12px; height: 284px;
+          border-top: 2px solid var(--rule); padding-top: 9px; }
+  .card { display: grid; grid-template-columns: 50px 1fr; grid-template-rows: auto 1fr; column-gap: 8px; border-left: 3px solid var(--c, #333); padding-left: 7px; }
+  .card svg { width: 50px; height: 50px; grid-row: 1; }
+  .card .hd { grid-row: 1; }
+  .card .tag { margin-top: 0; font-size: 11.5px; color: var(--c); }
+  .card h3 { font-family: 'Source Serif Pro', serif; font-weight: 700; font-size: 15.2px; line-height: 1.12; margin-top: 1px; }
+  .card p { grid-column: 1 / span 2; font-size: 11.6px; line-height: 1.32; color: #2a2a2a; margin-top: 4px; }
+
+  /* bottom: map + list */
+  .bottom { margin-top: 8px; border-top: 2px solid var(--rule); padding-top: 7px; display: grid; grid-template-columns: 300px 1fr; gap: 16px; height: 186px; }
+  .maphd { font: 800 14px 'Barlow Condensed'; text-transform: uppercase; letter-spacing: 1px; }
+  .map { display: block; margin-top: 4px; border-radius: 2px; }
+  .mapnote { font-size: 10.5px; line-height: 1.3; color: #444; margin-top: 4px; }
+  .also h4 { font: 800 14px 'Barlow Condensed'; text-transform: uppercase; letter-spacing: 1px; }
+  .cols { display: grid; grid-template-columns: 1fr 1fr; column-gap: 16px; margin-top: 2px; }
+  .grp { margin-top: 3px; }
+  .grp .g { font: 700 11.5px 'Barlow Condensed'; text-transform: uppercase; letter-spacing: 1.2px; color: var(--c); border-bottom: 1px solid #c9c2b2; }
+  .grp li { list-style: none; font-size: 11.6px; line-height: 1.28; padding: 1.5px 0 1.5px 9px; position: relative; }
+  .grp li::before { content: ""; position: absolute; left: 0; top: 6.5px; width: 4px; height: 4px; background: var(--c); }
+
+  .foot { position: absolute; left: 16px; right: 16px; bottom: 8px; border-top: 1px solid var(--rule); padding-top: 4px;
+          font-size: 10.3px; line-height: 1.3; color: #333; display: flex; justify-content: space-between; gap: 12px; }
+  .foot b { color: var(--red); }
+</style>
+</head>
+<body>
+
+<header class="mast">
+  <div>
+    <div class="kicker">The world's news · one day on one page</div>
+    <div class="date">Tuesday 24 November 2026</div>
+  </div>
+  <div class="mastnote"><b>Final edition</b>Every story here happened or was first reported that day · final edition, after the US close</div>
+</header>
+
+<div class="strap"><span class="lab">IN BRIEF</span>
+  <span>Huawei guilty</span><i>■</i><span>Riyadh tower hit</span><i>■</i><span>Shanghai boss probed</span><i>■</i><span>AI stocks slip</span><i>■</i><span>Gaza strike</span><i>■</i><span>Senegal regain Africa Cup</span>
+</div>
+
+<section class="heroes">
+  <!-- 1 Huawei -->
+  <article class="hero">
+    <svg class="art" viewBox="0 0 320 150" preserveAspectRatio="xMidYMid slice">
+      <rect width="320" height="150" fill="#13294b"/>
+      <!-- courthouse -->
+      <g fill="#e9e3d4">
+        <polygon points="14,50 72,20 130,50"/>
+        <rect x="14" y="52" width="116" height="7"/>
+        <rect x="21" y="62" width="10" height="56"/><rect x="43" y="62" width="10" height="56"/>
+        <rect x="65" y="62" width="10" height="56"/><rect x="87" y="62" width="10" height="56"/><rect x="109" y="62" width="10" height="56"/>
+        <rect x="10" y="119" width="124" height="7"/><rect x="4" y="128" width="136" height="8"/>
+      </g>
+      <polygon points="38,46 72,29 106,46" fill="#13294b"/>
+      <text x="72" y="45" text-anchor="middle" font-family="Barlow Condensed" font-weight="700" font-size="9" fill="#e9e3d4" letter-spacing="1">U.S. COURT</text>
+      <!-- verdict -->
+      <text x="152" y="34" font-family="Barlow Condensed" font-weight="800" font-size="17" letter-spacing="2" fill="#ff7b6e">GUILTY</text>
+      <text x="150" y="88" font-family="Barlow Condensed" font-weight="800" font-size="62" fill="#fff">10</text>
+      <text x="212" y="70" font-family="Barlow Condensed" font-weight="700" font-size="20" fill="#fff">of 12</text>
+      <text x="212" y="88" font-family="Barlow Condensed" font-weight="700" font-size="20" fill="#fff">counts</text>
+      <g>
+        <rect x="152" y="98" width="10" height="10" fill="#ff7b6e"/><rect x="165" y="98" width="10" height="10" fill="#ff7b6e"/>
+        <rect x="178" y="98" width="10" height="10" fill="#ff7b6e"/><rect x="191" y="98" width="10" height="10" fill="#ff7b6e"/>
+        <rect x="204" y="98" width="10" height="10" fill="#ff7b6e"/><rect x="217" y="98" width="10" height="10" fill="#ff7b6e"/>
+        <rect x="230" y="98" width="10" height="10" fill="#ff7b6e"/><rect x="243" y="98" width="10" height="10" fill="#ff7b6e"/>
+        <rect x="256" y="98" width="10" height="10" fill="#ff7b6e"/><rect x="269" y="98" width="10" height="10" fill="#ff7b6e"/>
+        <rect x="282.75" y="98.75" width="8.5" height="8.5" fill="none" stroke="#fff" stroke-width="1.5"/>
+        <rect x="295.75" y="98.75" width="8.5" height="8.5" fill="none" stroke="#fff" stroke-width="1.5"/>
+      </g>
+      <text x="152" y="126" font-family="Inter" font-weight="600" font-size="10.5" fill="#dfe6f2">cleared of 2: racketeering</text>
+      <text x="152" y="139" font-family="Inter" font-weight="600" font-size="10.5" fill="#dfe6f2">and obstruction conspiracy</text>
+    </svg>
+    <div class="tag" style="color:var(--am)"><span class="num">1</span>USA · China · Tech &amp; law</div>
+    <h2>US jury convicts Huawei of trade-secret theft and fraud</h2>
+    <p>A federal jury in Brooklyn finds China's Huawei guilty of conspiring to steal trade secrets, bank and wire fraud and breaking Iran sanctions, after an 11-week trial. Huawei says it will appeal.</p>
+  </article>
+
+  <!-- 2 Riyadh -->
+  <article class="hero">
+    <svg class="art" viewBox="0 0 320 150" preserveAspectRatio="xMidYMid slice">
+      <defs>
+        <linearGradient id="dusk" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stop-color="#1b2238"/><stop offset="0.7" stop-color="#5a3a46"/><stop offset="1" stop-color="#c0704a"/>
+        </linearGradient>
+        <radialGradient id="blast"><stop offset="0" stop-color="#fff4c2"/><stop offset="0.45" stop-color="#ffb02e"/><stop offset="1" stop-color="#e4572e" stop-opacity="0"/></radialGradient>
+      </defs>
+      <rect width="320" height="150" fill="url(#dusk)"/>
+      <!-- smoke -->
+      <g fill="#8d8a90" opacity="0.85">
+        <circle cx="196" cy="40" r="11"/><circle cx="184" cy="30" r="13"/><circle cx="170" cy="20" r="14"/><circle cx="154" cy="13" r="13"/>
+      </g>
+      <!-- skyline -->
+      <g fill="#0c0e18">
+        <rect x="0" y="118" width="320" height="32"/>
+        <rect x="10" y="96" width="22" height="30"/><rect x="36" y="84" width="16" height="40"/><rect x="56" y="104" width="26" height="20"/>
+        <rect x="88" y="90" width="18" height="34"/><rect x="110" y="72" width="20" height="52"/><rect x="134" y="98" width="24" height="26"/>
+        <rect x="236" y="80" width="20" height="44"/><rect x="260" y="94" width="26" height="30"/><rect x="290" y="70" width="18" height="54"/>
+        <!-- PIF Tower: tall, tapering crown -->
+        <polygon points="190,124 190,40 196,22 204,14 214,14 222,22 228,40 228,124"/>
+        <!-- Kingdom Centre style tower for context -->
+        <path d="M160,124 L160,70 Q170,56 180,70 L180,124 Z"/>
+      </g>
+      <g fill="#f5d76e" opacity="0.55">
+        <rect x="195" y="70" width="3" height="3"/><rect x="203" y="80" width="3" height="3"/><rect x="211" y="92" width="3" height="3"/><rect x="219" y="66" width="3" height="3"/>
+        <rect x="195" y="104" width="3" height="3"/><rect x="215" y="110" width="3" height="3"/><rect x="113" y="80" width="3" height="3"/><rect x="293" y="84" width="3" height="3"/>
+      </g>
+      <circle cx="210" cy="48" r="20" fill="url(#blast)"/>
+      <!-- drone track -->
+      <path d="M316,6 Q280,14 246,34" stroke="#ffd9a0" stroke-width="1.5" stroke-dasharray="4 3" fill="none"/>
+      <g transform="translate(240,38) rotate(150)"><path d="M10,0 L-6,-8 L-3,0 L-6,8 Z" fill="#ffd9a0"/><rect x="-9" y="-1.5" width="6" height="3" fill="#ffd9a0"/></g>
+      <!-- figure -->
+      <text x="12" y="44" font-family="Barlow Condensed" font-weight="800" font-size="46" fill="#fff">11</text>
+      <text x="52" y="28" font-family="Barlow Condensed" font-weight="700" font-size="16" fill="#fff">injured</text>
+      <text x="52" y="44" font-family="Barlow Condensed" font-weight="600" font-size="13" fill="#ffd9a0">2nd hit in 5 days</text>
+      <text x="209" y="143" text-anchor="middle" font-family="Barlow Condensed" font-weight="700" font-size="11" letter-spacing="1" fill="#ffd9a0">PIF TOWER · RIYADH</text>
+    </svg>
+    <div class="tag" style="color:var(--me)"><span class="num">2</span>Saudi Arabia · Yemen's Houthis</div>
+    <h2>Riyadh's tallest tower hit again; 11 injured</h2>
+    <p>Saudi civil defence blames a Houthi "terrorist attack" on the PIF Tower, home of the kingdom's wealth fund, struck for the second time in five days. Gulf neighbours condemn it.</p>
+  </article>
+
+  <!-- 3 China -->
+  <article class="hero">
+    <svg class="art" viewBox="0 0 320 150" preserveAspectRatio="xMidYMid slice">
+      <rect width="320" height="150" fill="#9b1c1c"/>
+      <!-- Shanghai skyline -->
+      <g fill="#5c0e0e">
+        <rect x="0" y="128" width="170" height="22"/>
+        <!-- Oriental Pearl Tower -->
+        <rect x="27" y="30" width="3" height="100"/><rect x="24" y="96" width="9" height="34"/>
+        <circle cx="28.5" cy="102" r="11"/><circle cx="28.5" cy="64" r="8"/><circle cx="28.5" cy="42" r="4"/>
+        <polygon points="16,130 24,104 26,104 20,130"/><polygon points="41,130 33,104 31,104 37,130"/>
+        <!-- Jin Mao (stepped) -->
+        <polygon points="70,130 70,70 73,62 76,70 80,58 84,70 87,62 90,70 90,130"/><rect x="78" y="40" width="4" height="20"/>
+        <!-- SWFC (bottle opener) -->
+        <path d="M100,130 L102,34 L120,34 L122,130 Z M106,44 L116,44 L116,52 L106,52 Z" fill-rule="evenodd"/>
+        <!-- Shanghai Tower (twisted, tallest) -->
+        <path d="M132,130 C130,90 134,50 144,14 C150,40 156,80 160,130 Z"/>
+      </g>
+      <!-- magnifier -->
+      <circle cx="98" cy="78" r="26" fill="none" stroke="#f2c14e" stroke-width="5"/>
+      <rect x="114" y="98" width="9" height="30" rx="3" transform="rotate(-40 118 113)" fill="#f2c14e"/>
+      <!-- Politburo grid: 24 seats, 4th probed since 2025 -->
+      <text x="186" y="26" font-family="Barlow Condensed" font-weight="800" font-size="14" letter-spacing="0.5" fill="#f8e3b0">POLITBURO: 24 SEATS</text>
+      <g fill="#f8e3b0">
+        <circle cx="194" cy="44" r="7" fill="#c9837d"/><circle cx="214" cy="44" r="7" fill="#c9837d"/><circle cx="234" cy="44" r="7" fill="#c9837d"/>
+        <circle cx="254" cy="44" r="7" fill="#f2c14e" stroke="#fff" stroke-width="2.5"/>
+        <circle cx="274" cy="44" r="7"/><circle cx="294" cy="44" r="7"/>
+        <circle cx="194" cy="64" r="7"/><circle cx="214" cy="64" r="7"/><circle cx="234" cy="64" r="7"/><circle cx="254" cy="64" r="7"/><circle cx="274" cy="64" r="7"/><circle cx="294" cy="64" r="7"/>
+        <circle cx="194" cy="84" r="7"/><circle cx="214" cy="84" r="7"/><circle cx="234" cy="84" r="7"/><circle cx="254" cy="84" r="7"/><circle cx="274" cy="84" r="7"/><circle cx="294" cy="84" r="7"/>
+        <circle cx="194" cy="104" r="7"/><circle cx="214" cy="104" r="7"/><circle cx="234" cy="104" r="7"/><circle cx="254" cy="104" r="7"/><circle cx="274" cy="104" r="7"/><circle cx="294" cy="104" r="7"/>
+      </g>
+      <text x="184" y="128" font-family="Inter" font-weight="700" font-size="10.5" fill="#fff">4th Politburo member</text>
+      <text x="184" y="142" font-family="Inter" font-weight="700" font-size="10.5" fill="#fff">probed since 2025</text>
+    </svg>
+    <div class="tag" style="color:var(--as)"><span class="num">3</span>China · Politics</div>
+    <h2>China investigates Shanghai party chief Chen Jining</h2>
+    <p>The anti-graft watchdog is investigating the Politburo member for "serious violations of discipline and law"; he is the fourth Politburo member probed since 2025.</p>
+  </article>
+</section>
+
+<section class="grid">
+  <!-- 4 Markets -->
+  <div class="card" style="--c:var(--biz)">
+    <svg viewBox="0 0 50 50"><rect width="50" height="50" fill="#f0e6d2"/>
+      <polyline points="4,40 12,37 18,12 24,18 31,24 38,28 46,34" fill="none" stroke="#b3261e" stroke-width="3" stroke-linejoin="round"/>
+      <polygon points="46,34 39,35 44,28" fill="#b3261e"/>
+      <line x1="4" y1="44" x2="46" y2="44" stroke="#6b4f1d" stroke-width="1.5"/></svg>
+    <div class="hd"><div class="tag"><span class="num">4</span>Markets · AI</div>
+      <h3>AI stocks slip: Nvidia −5.9%, Nasdaq −1.5%</h3></div>
+    <p>Nvidia gives back part of Monday's 31.5% jump on reinstating CEO Jensen Huang; newly listed Anthropic sinks below its $83 IPO price. Dow +0.9%.</p>
+  </div>
+  <!-- 5 Sanofi -->
+  <div class="card" style="--c:var(--biz)">
+    <svg viewBox="0 0 50 50"><rect width="50" height="50" fill="#f0e6d2"/>
+      <g transform="rotate(-35 25 25)"><rect x="8" y="17" width="34" height="16" rx="8" fill="#fff" stroke="#333" stroke-width="2"/>
+      <path d="M25,17 H34 A8,8 0 0 1 34,33 H25 Z" fill="#7c3a8e"/></g>
+</svg>
+    <div class="hd"><div class="tag"><span class="num">5</span>Business · Pharma</div>
+      <h3>Sanofi agrees to buy Insmed for about $41 billion</h3></div>
+    <p>The French drugmaker pays $175 a share in cash for the US lung-disease specialist.</p>
+  </div>
+  <!-- 6 Gaza -->
+  <div class="card" style="--c:var(--me)">
+    <svg viewBox="0 0 50 50"><rect width="50" height="50" fill="#f3e2df"/>
+      <path d="M6,46 V26 L12,22 L16,27 L20,20 L26,24 V46 Z" fill="#6d6259"/>
+      <rect x="28" y="30" width="16" height="16" fill="#6d6259"/>
+      <g fill="#f3e2df"><rect x="10" y="32" width="4" height="4"/><rect x="18" y="32" width="4" height="4"/><rect x="10" y="39" width="4" height="4"/><rect x="31" y="34" width="4" height="4"/><rect x="38" y="34" width="4" height="4"/></g>
+      <line x1="44" y1="3" x2="25" y2="17" stroke="#333" stroke-width="3"/>
+      <polygon points="27,15 19,22 23,13" fill="#333"/>
+      <polygon points="18,24 13,15 21,19 24,10 26,20 33,18 27,24" fill="#e4572e"/></svg>
+    <div class="hd"><div class="tag"><span class="num">6</span>Gaza · Israel</div>
+      <h3>Hamas says Israeli strike killed its Gaza security chief</h3></div>
+    <p>Medics say six others died, two of them police. Israel says it struck a senior Hamas operative.</p>
+  </div>
+  <!-- 7 Zaporizhzhia -->
+  <div class="card" style="--c:var(--eu)">
+    <svg viewBox="0 0 50 50"><rect width="50" height="50" fill="#e7e3f0"/>
+      <path d="M10,46 V14 L18,10 L22,16 L28,8 L34,14 L40,12 V46 Z" fill="#5b5566"/>
+      <g fill="#e7e3f0"><rect x="14" y="20" width="5" height="5"/><rect x="23" y="20" width="5" height="5"/><rect x="32" y="20" width="5" height="5"/>
+      <rect x="14" y="29" width="5" height="5"/><rect x="23" y="29" width="5" height="5"/><rect x="32" y="29" width="5" height="5"/>
+      <rect x="14" y="38" width="5" height="5"/><rect x="32" y="38" width="5" height="5"/></g>
+      <rect x="2" y="2" width="12" height="4" fill="#2a6ebb"/><rect x="2" y="6" width="12" height="4" fill="#f2c500"/></svg>
+    <div class="hd"><div class="tag"><span class="num">7</span>Ukraine · War</div>
+      <h3>Russian strike on Zaporizhzhia flats kills 2, wounds 40</h3></div>
+    <p>Four children are among the wounded in the overnight attack, says governor Mykhailo Semikin.</p>
+  </div>
+  <!-- 8 ECHR -->
+  <div class="card" style="--c:var(--eu)">
+    <svg viewBox="0 0 50 50"><rect width="50" height="50" fill="#e7e3f0"/>
+      <g stroke="#5b5566" stroke-width="2"><line x1="25" y1="6" x2="25" y2="46"/>
+      <line x1="19" y1="10" x2="31" y2="10"/><line x1="19" y1="18" x2="31" y2="18"/><line x1="19" y1="26" x2="31" y2="26"/><line x1="19" y1="34" x2="31" y2="34"/><line x1="19" y1="42" x2="31" y2="42"/></g>
+      <path d="M33,22 H45 M37,17 L32,22 L37,27" stroke="#b3261e" stroke-width="2.5" fill="none"/>
+      <circle cx="10" cy="20" r="4" fill="#333"/><path d="M4,36 Q10,24 16,36 Z" fill="#333"/>
+      <circle cx="12" cy="31" r="2.6" fill="#333"/><path d="M8,40 Q12,33 16,40 Z" fill="#333"/></svg>
+    <div class="hd"><div class="tag"><span class="num">8</span>Europe · Migration</div>
+      <h3>European rights court faults Poland, Latvia over pushbacks</h3></div>
+    <p>Returns to Belarus amid migration it engineered are not unlawful per se, but expelling children and a protected applicant was. Lithuania cleared.</p>
+  </div>
+  <!-- 9 AFCON -->
+  <div class="card" style="--c:var(--af)">
+    <svg viewBox="0 0 50 50"><rect width="50" height="50" fill="#e2efe4"/>
+      <path d="M15,8 H35 V18 A10,10 0 0 1 15,18 Z" fill="#d9a520"/>
+      <path d="M15,11 H9 A6,6 0 0 0 15,21 M35,11 H41 A6,6 0 0 1 35,21" fill="none" stroke="#d9a520" stroke-width="2.5"/>
+      <rect x="23" y="27" width="4" height="8" fill="#d9a520"/><rect x="16" y="35" width="18" height="6" fill="#7a5a10"/>
+      <rect x="5" y="43" width="13" height="5" fill="#00853f"/><rect x="18" y="43" width="13" height="5" fill="#fdef42"/><rect x="31" y="43" width="14" height="5" fill="#e31b23"/></svg>
+    <div class="hd"><div class="tag"><span class="num">9</span>Africa · Football</div>
+      <h3>Court hands Senegal back the Africa Cup of Nations title</h3></div>
+    <p>CAS overturns Morocco's forfeit win; Senegal's 1-0 final victory stands. Morocco is "astonished".</p>
+  </div>
+  <!-- 10 Quasar -->
+  <div class="card" style="--c:var(--sci)">
+    <svg viewBox="0 0 50 50"><rect width="50" height="50" fill="#0f1b2e"/>
+      <ellipse cx="25" cy="25" rx="19" ry="6" fill="none" stroke="#f5a65b" stroke-width="2.5" transform="rotate(-20 25 25)"/>
+      <line x1="31" y1="2" x2="19" y2="48" stroke="#8fd3ff" stroke-width="2"/>
+      <circle cx="25" cy="25" r="5" fill="#fff"/>
+      <circle cx="8" cy="9" r="1" fill="#fff"/><circle cx="43" cy="41" r="1" fill="#fff"/><circle cx="41" cy="8" r="1" fill="#fff"/></svg>
+    <div class="hd"><div class="tag"><span class="num">10</span>Space · Science</div>
+      <h3>Euclid finds the most distant quasar yet</h3></div>
+    <p>ESA's telescope sees it as it was just 630 million years after the Big Bang, lit by a black hole of ~360 million Suns.</p>
+  </div>
+  <!-- 11 Ebola -->
+  <div class="card" style="--c:var(--af)">
+    <svg viewBox="0 0 50 50"><rect width="50" height="50" fill="#e2efe4"/>
+      <g transform="rotate(-45 25 25)"><rect x="10" y="20" width="24" height="10" fill="#fff" stroke="#23804a" stroke-width="2"/>
+      <rect x="12" y="22" width="12" height="6" fill="#7cc495"/><rect x="34" y="23" width="6" height="4" fill="#23804a"/>
+      <line x1="40" y1="25" x2="48" y2="25" stroke="#333" stroke-width="1.5"/><rect x="4" y="22" width="6" height="6" fill="#23804a"/><rect x="1" y="19" width="3" height="12" fill="#23804a"/></g></svg>
+    <div class="hd"><div class="tag"><span class="num">11</span>Health · DR Congo</div>
+      <h3>Gavi plans to buy 1.5m Ebola vaccine doses for Congo</h3></div>
+    <p>The order for the experimental shot hinges on trials; the outbreak has killed over 5,700 (Reuters).</p>
+  </div>
+</section>
+
+<section class="bottom">
+  <div>
+    <div class="maphd">Where it happened</div>
+    <!--MAP-->
+    <div class="mapnote">Numbers match the stories above; red pins are the three leads.</div>
+  </div>
+  <div class="also">
+    <h4>Also on Tuesday 24 November</h4>
+    <div class="cols">
+      <div>
+        <div class="grp" style="--c:var(--am)"><div class="g">Americas</div><ul>
+          <li>Dell: record $54.9bn quarter, new $25bn buyback</li>
+          <li>US consumer confidence jumps to 103.3</li>
+          <li>WHO: 3 bird-flu cases in Washington state, 1 died</li>
+          <li>Venezuela puts public debt at $237.5bn in new plan</li>
+        </ul></div>
+        <div class="grp" style="--c:var(--eu)"><div class="g">Europe</div><ul>
+                    <li>France: officer who shot Nahel to face murder trial</li>
+          <li>UK report: record 5,258 heat deaths last summer</li>
+          <li>Visegrád Four demand delay to EU's ETS2 carbon market</li>
+        </ul></div>
+      </div>
+      <div>
+        <div class="grp" style="--c:var(--as)"><div class="g">Asia-Pacific</div><ul>
+          <li>Indonesia names ex-police chief treason suspect</li>
+          <li>Japan to pay ICC dues early as US sanctions loom</li>
+          <li>Bangladesh police tear-gas garment-worker pay protests</li>
+          <li>S. Korea island shelter alert as Russian warplanes near</li>
+        </ul></div>
+        <div class="grp" style="--c:var(--sport)"><div class="g">Sport</div><ul>
+          <li>Champions League: Real Madrid 5-1 PSV (Mbappé 2)</li>
+          <li>World chess title: Game 1, Sindarov–Gukesh, drawn</li>
+          <li>Cricket: Sooryavanshi, 15, hits 204 off 53 balls (28 sixes)</li>
+          <li>Davis Cup Finals, Bologna: Czechia beat Canada 2-0</li>
+        </ul></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="foot">
+  <span><b>Date check:</b> every event on this page happened, or was first reported, on Tuesday 24 November 2026; Nvidia's Monday rally is context only.</span>
+  <span>Sources: Reuters, AP, AFP, Bloomberg, Al Jazeera, Euronews, ESA, CAS</span>
+</footer>
+
+</body>
+</html>

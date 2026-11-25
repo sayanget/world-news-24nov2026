@@ -1,0 +1,4 @@
+out/
+render/out/
+*.tmp
+__pycache__/
